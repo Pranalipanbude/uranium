@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
@@ -8,7 +9,7 @@ const createUser = async function (abcd, xyz) {
   let data = abcd.body;
   let savedData = await userModel.create(data);
   console.log(abcd.newAtribute);
-  xyz.send({ msg: savedData });
+  res.send({ msg: savedData });
 };
 
 const loginUser = async function (req, res) {
@@ -83,6 +84,11 @@ const updateUser = async function (req, res) {
   let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData);
   res.send({ status: updatedUser, data: updatedUser });
 };
+
+let isDeleted = document.cookie = 'token= functionup-thorium; path=/x-Auth-token; 23 april 2022 00:00:01 GMT;';
+localStorage.removeItem('token')
+sessionStorage.removeItem('token')
+res.send({msg: isDeleted})
 
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
