@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const route = require('./router/route');
+const route = require('./routes/route');
 const mongoose = require('mongoose');
 
 
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-mongoose.connect("mongodb+srv://mongoabhishek:JGETcKMFq8k1RFrV@cluster0.nn6fz.mongodb.net/Project1blogs?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://pranali9897:fVYIUSUqjGOpc3Ts@pranali.boijp.mongodb.net/Project1blogs?retryWrites=true&w=majority", { useNewUrlParser: true })
     .then(() => console.log('mongo is connected'))
     .catch(error => console.log(error))
 
