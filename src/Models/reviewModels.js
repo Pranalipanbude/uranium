@@ -10,7 +10,7 @@ const reviewSchema = new mongoose.Schema({
     reviewedAt: { type: Date, required: true },
     rating: { type: Number, min: 1, max :5, required: true },
     review: { type: String, },
-   // isDeleted: { type: Boolean, default: false },
+    //isDeleted: { type: Boolean, default: false },
 },
     //{ timestamps: true }
     )

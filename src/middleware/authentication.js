@@ -26,4 +26,4 @@ const authentication = function (req, res, next) {
 
 
 
-module.exports.authentication=authentication
+module.exports=authentication

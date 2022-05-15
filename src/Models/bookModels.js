@@ -60,10 +60,10 @@ const bookSchema = new mongoose.Schema(
      },
 
     
-     releasedAt: {
+     "releasedAt": {
        type: Date,
        required:true,
-      // formate: YYYY-MM-DD
+       //formate: YYYY-MM-DD
      },
 
     
