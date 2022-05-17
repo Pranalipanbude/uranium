@@ -23,102 +23,10 @@ const isvalidRequestBody = function (requestbody) {
 
 
 
-
-
-// const createBook = async function (req, res) {
-//     try {
-
-//         let data = req.body;
-
-//         if (!isvalidRequestBody(data)) {
-//             return res.send({ status: false, msg: "please provide  details" })
-//         }
-//         else {
-//             const { title, excerpt, userId, ISBN, category, subcategory, isDeleted, releasedAt } = data
-
-//             if (isDeleted) {
-//                 if (isDeleted == true) {
-//                     return res.status(400).send({ status: false, msg: "data is not valid" })
-//                 }
-//             }
-
-//             if (!isValid(title)) {
-//                 return res.status(400).send({ status: false, msg: "title is required" })
-//             }
-
-
-//             let uniqueTitle = await bookModels.findOne({ title: title })
-//             if (uniqueTitle) return res.status(409).send({ status: false, msg: " title already exists" })
-
-
-
-//             if (!isValid(excerpt)) {
-//                 return res.status(400).send({ status: false, msg: "excerpt is required" })
-//             }
-
-//             if (!isValid(userId)) {
-//                 return res.status(400).send({ status: false, msg: "userId is required" })
-//             }
-
-//             if (!isValidObjectId(userId)) {
-//                 return res.status(400).send({ status: false, msg: "invalid userId" })
-//             }
-
-//             let isUser = await userModels.findById(userId)
-//             if(!isUser){
-//                 return res.status(404).send({status:false , msg:"user is not exist"})
-//             }
-
-//             if (!isValid(ISBN)) {
-//                 return res.status(400).send({ status: false, msg: "ISBN is required" })
-//             }
-
-//             if (!isValid(category)) {
-//                 return res.status(400).send({ status: false, msg: "category is required" })
-//             }
-
-
-//             if (!isValid(subcategory)) {
-//                 return res.status(400).send({ status: false, msg: "subcategory is required" })
-//             }
-//             if (!isValid(releasedAt)) {
-//                 return res.status(400).send({ status: false, msg: "releasedAt is required" })
-//             }
-
-
-//         }
-
-//         //req.body.releasedAt = moment().format("YYYY-MM-DD")
-//         let saveData = await bookModels.create(data)
-//         return res.status(201).send({ status: true, msg: saveData })
-
-//     }
-//     catch (error) {
-//         console.log(error)
-//         return res.status(500).send({ status: false, msg: "error", error: error.message })
-
-//     }
-// }
-
-
 const createBook = async function (req, res) {
     try {
 
         let data = req.body;
-        let userId = data.userId
-        let checkuser = await userModels.findById(userId)
-        console.log(checkuser)
-
-        if (!checkuser) {
-            return res.status(404).send({ status: false, msg: "No book found this bookId" })
-
-        }
-        
-        // Authorisation
-        if (userId != req.userId) {
-            return res.status(401).send({ status: false, msg: "you are not create the book " })
-        }
-
 
         if (!isvalidRequestBody(data)) {
             return res.send({ status: false, msg: "please provide  details" })
@@ -154,11 +62,9 @@ const createBook = async function (req, res) {
                 return res.status(400).send({ status: false, msg: "invalid userId" })
             }
 
-
-
             let isUser = await userModels.findById(userId)
-            if (!isUser) {
-                return res.status(404).send({ status: false, msg: "user is not exist" })
+            if(!isUser){
+                return res.status(404).send({status:false , msg:"user is not exist"})
             }
 
             if (!isValid(ISBN)) {
@@ -178,7 +84,6 @@ const createBook = async function (req, res) {
             }
 
 
-
         }
 
         req.body.releasedAt = moment().format("YYYY-MM-DD")
@@ -192,10 +97,6 @@ const createBook = async function (req, res) {
 
     }
 }
-
-
-
-
 
 
 
